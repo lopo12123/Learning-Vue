@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <!-- EX1 v-text -->
+        <div id="ex1">
+            <br><p>--- v-text部分 ---</p>
+            <h2 v-text="msg1">原有内容1</h2>
+            <h2 v-text="msg2+'拼接内容1'"> 原有内容2 </h2>
+            <h2>{{msg3}}原有内容3</h2>
+            <h2>{{ msg4+"拼接内容2" }} 原有内容4 </h2>
+        </div>
+        <script>
+            var app1 = new Vue({  // json格式
+                el: "#ex1",
+                data: {
+                    msg1: " hello! ",
+                    msg2: " information ",
+                    msg3: " message3 ",
+                    msg4: " message4 "
+                }
+            })
+        </script>
+
+        <!-- EX2 v-html -->
+        <div id="ex2">
+            <br><p>--- v-html部分 ---</p>
+            <p v-text="msg"></p>
+            <p v-html="msg"></p>
+        </div>
+        <script>
+            var app2 = new Vue({
+                el: "#ex2",
+                data: {
+                    msg: "<a href='https://www.baidu.com'>百度</a>"
+                }
+            })
+        </script>
+
+        <!-- EX3 v-on -->
+        <div id="ex3">
+            <br><p>--- v-on部分 ---</p>
+            <button data-note="v-on指令" v-on:click="func1">正常按钮</button>
+            <button data-note="v-on简写" @click="func2">简写按钮</button>
+            <button data-note="双击事件" @dblclick="func3">双击按钮</button>
+        </div>
+        <script>
+            var app3 = new Vue({
+                el: "#ex3",
+                data: {
+                    func1: function() {
+                        alert('这是正常按钮');
+                    },
+                    func2: function() {
+                        alert('这是简写按钮');
+                    },
+                    func3: function() {
+                        alert('这是双击按钮');
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>

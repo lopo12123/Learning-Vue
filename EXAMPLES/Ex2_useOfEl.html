@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Use Of 'el'</title>
+    </head>
+
+    <body>
+        {{message}}
+        <div id="app" class="app">
+            {{message}}
+            <span>{{message}}</span>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                // el: "#app",
+                //el: ".app",
+                el: "div",
+                data: {
+                    message: "你好"
+                }
+            })
+        </script>
+    </body>
+</html>

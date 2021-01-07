@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用</title>
+        <style>
+            #counter {
+                position: relative;
+                width: 170px;
+                height: 50px;
+                border: solid 1px #ccc;
+                margin: 10px auto;
+            }
+            .btn {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                background-color: ivory;
+                border: solid 1px #ccc;
+                outline: none;
+            }
+            #sub {
+                float: left;
+                margin: 5px;
+            }
+            #add {
+                float: right;
+                margin: 5px;
+            }
+            #number {
+                position: relative;
+                width: 50px;
+                height: 38px;
+                margin: 5px 9px;
+                border:solid 1px #ccc;
+                text-align: center;
+                display: inline-block;
+                overflow: hidden;
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="counter">
+            <button id="sub" class="btn" @click="func_sub"> - </button>
+            <div id="number">{{num}}</div>
+            <button id="add" class="btn" @click="func_add"> + </button>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#counter",
+                data: {
+                    num: 1,
+                    func1: function() {
+                        console.log(this === app);  // false 注意this的指向
+                    }
+                },
+                methods: {
+                    func_add: function() {
+                        this.num ++;
+                        console.log(this === app);  // true
+                    },
+                    func_sub: function() {
+                        this.num --;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
