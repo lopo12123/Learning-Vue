@@ -62,7 +62,7 @@
       - `v-html` **作用**为设置标签的`innerHTML`  
       - 内容中有 `html` 结构则会被解析为**标签**  
       - `v-text` 无论内容是什么只会解析为**文本**  
-      - 解析文本使用 `v-text`，需要解析**html结构**则使用 `v-html`  
+      - 解析文本使用 `v-text`，需要解析**html结构**则使用`v-html`  
    3. [`v-on`](EXAMPLES/Ex4_localApp1.html)  
       - `v-on` **作用**为绑定事件\(click、dblclick等\)  
 
@@ -70,12 +70,44 @@
 
 2. **显示切换，属性绑定**  
    1. [`v-show`](EXAMPLES/Ex4_localApp2.html)  
+      - `v-show` 的作用是根据**真假**切换元素的显示状态  
+      - 原理是修改元素的`display`，实现显示隐藏  
+      - 指令后面的内容最终都会被解析为**布尔值**  
+      - 值为`true`则元素显示，为`false`则元素隐藏  
+      - 数据改变后对应元素的显示状态会**同步更新**  
    2. [`v-if`](EXAMPLES/Ex4_localApp2.html)  
+      - `v-if` 的作用是根据表达式的**真假**切换元素的显示状态  
+      - 本质是通过操纵**dom**元素来切换显示状态  
+      - 表达式的值为`true`则元素**存在**于dom树中，为`false`则从dom树种**移除**  
+      - **频繁切换**使用`v-show`，反之使用`v-if`\(前者切换的消耗小\)  
    3. [`v-bind`](EXAMPLES/Ex4_localApp2.html)  
+      - `v-bind` 的作用是为元素**绑定属性**  
+      - **完整写法**是`v-bind:属性名="属性值"`  
+      - **简写**可以直接省略v-bind，写为`:属性名="属性值`  
+      - 需要动态的增删class建议使用对象方法`:class={className: isActive}`  
+
+   **案例**: [图片切换](EXAMPLES/Ex4_localAppExample2.html)  
 
 
+3. **列表循环，表单元素绑定**  
+   1. [`v-for`](EXAMPLES/Ex4_localApp3.html)  
+      - `v-for` 的作用是根据数据生成列表结构  
+      - 数组经常和`v-for`结合使用  
+      - 语法是`(item, index) in 数据名`\(变量名item、index可以自己命名，但顺序为`item、index`\)  
+      - `item`和`index`可以结合其他指令一起使用  
+      - 数组长度的更新会同步到页面上，是响应式的  
+   2. [`v-on`补充: 传参、事件修饰符](EXAMPLES/Ex4_localApp3.html)  
+      - 事件绑定的方法写成**函数调用**的形式，可以传入自定义参数  
+      - 定义方法时需要定义**形参**来接收传入的实参  
+      - 时间的后面跟上**.修饰符**可以对事件进行限制  
+      - `.enter`可以限制触发的按键为回车  
+      - 事件修饰符有多种  
+   3. [`v-model`](EXAMPLES/Ex4_localApp3.html)  
+      - `v-model` 的作用是便捷地设置和获取**表单元素**的值  
+      - 绑定的数据会和表单元素的**值**相关联\(修改其中任何一个都会使另一个同步更新\)  
+      - 绑定的数据 \<\- \- \- \-\> 表单元素的值  
 
-3. **列表循环，表单元素绑定**
+   **案例**: [记事本](EXAMPLES/Ex4_localAppExample3.html)  
 
 <br>
 
