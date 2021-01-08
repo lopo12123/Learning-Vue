@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用 二</title>
+        <style>
+            img {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                border: solid 1px #ccc;
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <!-- EX1 v-show -->
+        <br><p>-- EX1 v-show --</p>
+        <div id="app1">
+            <div>
+                <p>第一张图片</p>
+                <img src="/PHOTOS/cat.jpg" v-show="true"><br>
+            </div>
+            <p>- - - - - - - </p>
+            <div>
+                <p>点击按钮切换第二张图片 显示 / 隐藏</p>
+                <button id="btn1"@click="func1">show / hidden</button>
+                <p>第二张图片</p>
+                <img src="/PHOTOS/cat.jpg" v-show="isShow"><br>
+            </div>
+            
+        </div>
+        <script>
+            var app1 = new Vue({
+                el: "#app1",
+                data: {
+                    isShow: true
+                },
+                methods: {
+                    func1: function(e) {
+                        this.isShow = !this.isShow;
+                    }
+                }
+            })
+        </script>
+
+        <!-- EX2 v-if -->
+        <br><p>-- EX1 v-if --</p>
+        
+
+        <!-- EX3 v-bind -->
+        <br><p>-- EX1 v-bind--</p>
+        
+
+    </body>
+</html>
