@@ -10,6 +10,9 @@
                 height: 50px;
                 border: solid 1px #ccc;
             }
+            .myImg {
+                border: solid 1px palegreen;
+            }
         </style>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -26,7 +29,7 @@
             <p>- - - - - - - </p>
             <div>
                 <p>点击按钮切换第二张图片 显示 / 隐藏</p>
-                <button id="btn1"@click="func1">show / hidden</button>
+                <button @click="func1">show / hidden</button>
                 <p>第二张图片</p>
                 <img src="/PHOTOS/cat.jpg" v-show="isShow"><br>
             </div>
@@ -47,11 +50,52 @@
         </script>
 
         <!-- EX2 v-if -->
-        <br><p>-- EX1 v-if --</p>
-        
+        <br><p>-- EX2 v-if --</p>
+        <div id="app2">
+            <p v-if="true">第一个p标签</p>
+            <button @click="func2">显示/隐藏 第二个p标签</button>
+            <p v-if="isShow">第二个p标签</p>
+        </div>
+        <script>
+            var app2 = new Vue({
+                el: "#app2",
+                data: {
+                    isShow: true
+                },
+                methods: {
+                    func2: function(e) {
+                        this.isShow = !this.isShow;
+                    }
+                }
+            })
+        </script>
 
         <!-- EX3 v-bind -->
-        <br><p>-- EX1 v-bind--</p>
+        <br><p>-- EX3 v-bind--</p>
+        <div id="app3">
+            <p>点击下右图切换边框</p>
+            <p>悬停查看图片信息</p>
+            <img v-bind:src="imgSrc1" v-bind:title="title1">
+            <img :src="imgSrc2" :title="title2" :class="{myImg: isActive}" @click="func1">  <!-- 简写(省略v-bind) -->
+            <!-- 此处 :class="{myImg: isActive}" 的意思是 myImg是否生效取决于 isActive 的值(为true则生效，否则不生效) -->
+        </div>
+        <script>
+            var app3 = new Vue({
+                el: "#app3",
+                data: {
+                    isActive: false,
+                    imgSrc1: "/PHOTOS/wolf.jpg",
+                    imgSrc2: "/PHOTOS/cat.jpg",
+                    title1: "it`s wolf colony",
+                    title2: "it`s a cat",
+                },
+                methods: {
+                    func1: function() {
+                        this.isActive = !this.isActive;
+                    }
+                }
+            })
+        </script>
         
 
     </body>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用 三 example</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            #app {
+                position: relative;
+                margin: 100px auto;
+            }
+            input {
+                position: relative;
+                width: 200px;
+                height: 20px;
+                margin: 1px auto;
+                border: solid 1px #ccc;
+                outline: none;
+                display: block;
+            }
+            li {
+                position: relative;
+                width: 200px;
+                margin: 1px auto;
+                background-color: ivory;
+                border: solid 1px #ccc;
+                color: lightblue;
+                list-style: none;
+            }
+            li:hover {  /* 鼠标移动到 */
+                background-color: khaki;
+            }
+            span {
+                color: lightgray;
+            }
+            label {
+                float: right;
+                color: burlywood;
+            }
+            label:hover {
+                color: cadetblue;
+            }
+            .foot {
+                color: burlywood;
+                user-select: none;
+            }
+            #delete {
+                float: right;
+            }
+            #delete:hover {
+                color: cadetblue;
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <input type="text" placeholder="请输入" v-on:keyup.enter="funcAdd" v-model="message">
+            <ul>
+                <li v-for="(item, index) in thingList">
+                    <span data-note="number">{{ index + 1 }}.</span> {{ item }} <label @click="funcDeleteOne"> X</label>
+                </li>
+                <li id="bottom" class="foot" v-show="isShowBottom"><span class="foot">sum: {{ thingList.length }}</span> <span id="delete" class="foot" @click="funcDeleteAll">delete</span></li>
+            </ul>
+
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    isShowBottom: true,  // 没做修改 - sum为0时依旧显示
+                    message: "",
+                    thingList: ["第一项", "第二项", "第三项"]
+                },
+                methods: {
+                    funcAdd: function() {
+                        if(this.message !== ""){  // 不为空则添加新项目
+                            this.thingList.push(this.message);  // 追加一项新的内容
+                            this.message = "";  // 添加完清空输入框
+                            // alert('新增项目');
+                        }
+                    },
+                    funcDeleteOne: function(e) {
+                        var myText = e.target.parentNode.firstChild.innerText;  // 获取innerText
+                        var myIndex = myText.slice(0, myText.length - 1) - 1;  // 去除最后一位(.), 然后(剩余的数字-1)即为index
+                        //console.log(myIndex);
+                        this.thingList.splice(myIndex, 1);
+                        // alert('删除当前项目');
+                    },
+                    funcDeleteAll: function() {
+                        this.thingList = [];  // 清空
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

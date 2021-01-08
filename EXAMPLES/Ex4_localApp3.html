@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用 三</title>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <!-- EX1 v-for -->
+        <br><p>-- EX1 v-for --</p>
+        <div id="app1">
+            <ul>
+                <li v-for="(item, index) in arr">
+                    索引: {{index}}, 内容: {{item}} 
+                </li>
+            </ul>
+            <h3 v-for="item in vagetables">{{item.name}}</h3>
+        </div>
+        <script>
+            var app1 = new Vue({
+                el: "#app1",
+                data: {
+                    arr: ["一", "二", "三", "四", "五"],
+                    vagetables: [
+                        {name: "番茄炒蛋"},
+                        {name: "土豆烧肉"}
+                    ]
+                }
+            })
+        </script>
+        
+        <!-- EX2 v-on补充 -->
+        <br><p>-- EX2 v-on补充 --</p>
+        <div id="app2">
+            <button v-on:click="func1('参数1','参数2')">btn1</button>
+            <p>输入内容后按下回车触发</p>
+            <input type="text" v-on:keyup.enter="func2">  <!-- v-on:keyup.enter 触发事件为按下回车 -->
+        </div>
+        <script>
+            var app2 = new Vue({
+                el: "#app2",
+                methods: {
+                    func1: function(p1, p2) {
+                        alert(p1 + p2);
+                    },
+                    func2: function(e) {
+                        alert("ur input is: " + e.target.value);
+                    }
+                }
+            })
+        </script>
+
+        <!-- EX3 v-model -->
+        <br><p>-- EX3 v-model --</p>
+        <div id="app3">
+            <input type="text" v-model="message">  <!-- v-model绑定message -->
+            <p> 上面的框的内容改变此处会同步显示: {{message}} </p>
+        </div>
+        <script>
+            var app3 = new Vue({
+                el: "#app3",
+                data: {
+                    message: "小明"
+                }
+            })
+        </script>
+        
+
+    </body>
+</html>

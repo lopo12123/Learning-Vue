@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>本地应用 二 example</title>
+        <style>
+            img {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                border: solid 1px #ccc;
+                user-select: none;
+            }
+            a {
+                user-select: none;
+            }
+        </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <img :src="imgSrc"><br>
+            <a href="javascript:void(0);" v-on:click="func1" v-show="isShow1">上一张</a>
+            <a href="javascript:void(0);" v-on:click="func2" v-show="isShow2">下一张</a>
+        </div>
+        <script>
+            var num = 1;
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    isShow1: false,
+                    isShow2: true,
+                    imgSrc: "/PHOTOS/cat" + num + ".jpg"
+                },
+                methods: {
+                    func1: function() {
+                        if(num >= 3){
+                            num --;
+                            this.imgSrc = "/PHOTOS/cat" + num + ".jpg";
+                            this.isShow2 = true;
+                        }
+                        else if(num == 2){
+                            num --;
+                            this.imgSrc = "/PHOTOS/cat" + num + ".jpg";
+                            this.isShow1 = false;
+                            this.isShow2 = true;
+                        }
+                    },
+                    func2: function() {
+                        if(num <= 9){
+                            num ++;
+                            this.imgSrc = "/PHOTOS/cat" + num + ".jpg";
+                            this.isShow1 = true;
+                        }
+                        else if(num == 10){
+                            num ++;
+                            this.imgSrc = "/PHOTOS/cat" + num + ".jpg";
+                            this.isShow1 = true;
+                            this.isShow2 = false;
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
