@@ -54,21 +54,25 @@
 - 列表循环，表单元素绑定 `v-for, v-on补充, v-model`  
 
 1. **内容绑定，事件绑定**  
-   1. [`v-text`](EXAMPLES/Ex4_localApp.html)  
+   1. [`v-text`](EXAMPLES/Ex4_localApp1.html)  
       - `v-text` **作用**为设置标签的内容\(textContent\)  
       - 默认写法会替换全部内容，使用**差值表达式-{{}}**可以替换指定内容  
       - 内部支持写**表达式**\(如字符串拼接\)  
-   2. [`v-html`](EXAMPLES/Ex4_localApp.html)  
+   2. [`v-html`](EXAMPLES/Ex4_localApp1.html)  
       - `v-html` **作用**为设置标签的`innerHTML`  
       - 内容中有 `html` 结构则会被解析为**标签**  
       - `v-text` 无论内容是什么只会解析为**文本**  
       - 解析文本使用 `v-text`，需要解析**html结构**则使用 `v-html`  
-   3. [`v-on`](EXAMPLES/Ex4_localApp.html)  
+   3. [`v-on`](EXAMPLES/Ex4_localApp1.html)  
       - `v-on` **作用**为绑定事件\(click、dblclick等\)  
 
-   **案例**: [计数器](EXAMPLES/Ex4_localAppExample.html)  
+   **案例**: [计数器](EXAMPLES/Ex4_localAppExample1.html)  
 
 2. **显示切换，属性绑定**  
+   1. [`v-show`](EXAMPLES/Ex4_localApp2.html)  
+   2. [`v-if`](EXAMPLES/Ex4_localApp2.html)  
+   3. [`v-bind`](EXAMPLES/Ex4_localApp2.html)  
+
 
 
 3. **列表循环，表单元素绑定**
