@@ -53,6 +53,11 @@
             #delete:hover {
                 color: cadetblue;
             }
+            #hidden {
+                width: 200px;
+                height: 10px;
+                border-radius: 0 0 10px 10px;  /* 左上 右上 右下 左下 */
+            }
         </style>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -61,19 +66,21 @@
     <body>
         <div id="app">
             <input type="text" placeholder="请输入" v-on:keyup.enter="funcAdd" v-model="message">
-            <ul>
+            <ul v-show="isShowAll">
                 <li v-for="(item, index) in thingList">
                     <span data-note="number">{{ index + 1 }}.</span> {{ item }} <label @click="funcDeleteOne"> X</label>
                 </li>
                 <li id="bottom" class="foot" v-show="isShowBottom"><span class="foot">sum: {{ thingList.length }}</span> <span id="delete" class="foot" @click="funcDeleteAll">delete</span></li>
             </ul>
+            <li id="hidden" @click="funcHidden"></li>
 
         </div>
         <script>
             var app = new Vue({
                 el: "#app",
                 data: {
-                    isShowBottom: true,  // 没做修改 - sum为0时依旧显示
+                    isShowBottom: true,
+                    isShowAll: true,
                     message: "",
                     thingList: ["第一项", "第二项", "第三项"]
                 },
@@ -82,18 +89,32 @@
                         if(this.message !== ""){  // 不为空则添加新项目
                             this.thingList.push(this.message);  // 追加一项新的内容
                             this.message = "";  // 添加完清空输入框
-                            // alert('新增项目');
+                            
+                            this.funcCheck();
                         }
                     },
                     funcDeleteOne: function(e) {
                         var myText = e.target.parentNode.firstChild.innerText;  // 获取innerText
                         var myIndex = myText.slice(0, myText.length - 1) - 1;  // 去除最后一位(.), 然后(剩余的数字-1)即为index
-                        //console.log(myIndex);
-                        this.thingList.splice(myIndex, 1);
-                        // alert('删除当前项目');
+                        this.thingList.splice(myIndex, 1);  // 删除当前项
+
+                        this.funcCheck();
+                    },
+                    funcCheck: function() {
+                        if(this.thingList.length == 0){
+                            this.isShowBottom = false;
+                        }
+                        else {
+                            this.isShowBottom = true;
+                        }
                     },
                     funcDeleteAll: function() {
                         this.thingList = [];  // 清空
+
+                        this.funcCheck();
+                    },
+                    funcHidden: function() {
+                        this.isShowAll = !this.isShowAll;
                     }
                 }
             })

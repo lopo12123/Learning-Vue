@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>网络应用</title>
+        <style>
+            p {
+                position: relative;
+                width: 500px;
+                border: solid 1px lavender;
+            }
+        </style>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <input type="button" value="随机笑话">
+        <p id="myjoke">点击按钮</p>
+        <script>
+            var btn = document.querySelector('input');
+            var text = document.querySelector('#myjoke');
+
+            btn.onclick = function() {
+                axios.get('https://autumnfish.cn/api/joke/list?num=1').then(
+                    function(responce) {
+                        text.innerHTML = responce.data.jokes[0];
+                        // console.log(responce.data);
+                    },
+                    function(error) {
+                        // console.log(error);
+                    }
+                )
+                if (this.value == '随机笑话') {
+                    this.value = '换一个';
+                }
+            }
+        </script>
+    </body>
+</html>
