@@ -88,7 +88,6 @@
 
    **案例**: [图片切换](EXAMPLES/Ex4_localAppExample2.html)  
 
-
 3. **列表循环，表单元素绑定**  
    1. [`v-for`](EXAMPLES/Ex4_localApp3.html)  
       - `v-for` 的作用是根据数据生成列表结构  
@@ -112,6 +111,18 @@
 <br>
 
 > ## 三、网络应用  
+
+1. `axios` \- 网络请求库  
+   ``` javascript
+      // 地址和参数用?连接，参数可以多个
+      // then里面的两个函数分别为请求成功/失败的回调函数
+      axios.get(地址?key=value&key2=value2).then(function(responce){}, function(error){})
+
+      // 地址和参数用,分隔，参数可以多个(用键值对表示)
+      // then里面的两个函数分别为请求成功/失败的回调函数
+      axios.post(地址, {key: value, key2: value2}).then(function(responce){}, function(error){})
+   ```
+
 
 
 
