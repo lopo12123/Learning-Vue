@@ -96,9 +96,10 @@
       - `item`和`index`可以结合其他指令一起使用  
       - 数组长度的更新会同步到页面上，是响应式的  
    2. [`v-on`补充: 传参、事件修饰符](EXAMPLES/Ex4_localApp3.html)  
+      - `v-on:click=func1(参数1, 参数2, ...);  // func1是一个函数`
       - 事件绑定的方法写成**函数调用**的形式，可以传入自定义参数  
       - 定义方法时需要定义**形参**来接收传入的实参  
-      - 时间的后面跟上**.修饰符**可以对事件进行限制  
+      - 时间的后面跟上`.`**修饰符**可以对事件进行限制  
       - `.enter`可以限制触发的按键为回车  
       - 事件修饰符有多种  
    3. [`v-model`](EXAMPLES/Ex4_localApp3.html)  
@@ -123,11 +124,9 @@
       axios.post(地址, {key: value, key2: value2}).then(function(responce){}, function(error){})
    ```
 
-
-
-
-<br>
-
-> ## 四、综合应用  
+2. `axios`+`vue`  
+   1. `axios`回调函数中的`this`已经改变\(不再表示vue对象\)，无法访问到`vue`对象中的`data`中的值  
+   2. 方法: 使用`axios`前先用`that = this`将this保存起来, 回调函数中直接调用`that`  
+   3. 和本地应用最大的区别是改变了**数据来源**  
 
 
